@@ -44,3 +44,17 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## General App
+
+The code is for a React application that uses the BrowserRouter component from the react-router-dom library to define routing. The Routes component from react-router-dom is used to define the different routes for the application, each defined using the Route component.
+
+In the useEffect hook, the code checks if there are Posts and Users data in the local storage. If there's no data in the local storage, the data is stored using the setItem method of the local storage API.
+
+The application has three routes defined:
+
+"/": the default route that displays the SinglePage component.
+"/following": another route that also displays the SinglePage component.
+"/user/:id": a dynamic route that displays the SinglePage component with a URL parameter id.
+The App component is exported as the default export.
+
