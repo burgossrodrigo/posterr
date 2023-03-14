@@ -126,84 +126,84 @@ The app uses two data structures: Posts and Users. The Posts object contains an 
 Posts
 Each post object in the Posts array has the following properties:
 
-postId: a unique identifier for the post
-title: the title of the post
-repost: a boolean indicating whether the post is a repost of another post
-repostId: if repost is true, this is the postId of the original post
-quote: a boolean indicating whether the post is a quote of another post
-quoteId: if quote is true, this is the postId of the original post
-body: the body text of the post
-comments: an array of comment objects (see below)
-likes: an array of user ids representing the users who have liked the post
-shares: an array of user ids representing the users who have shared the post
-quotes: an array of user ids representing the users who have quoted the post
-author: the name of the user who created the post
-authorId: the id of the user who created the post
-date: the timestamp (in seconds since the Unix epoch) when the post was created
-Each comment object in the comments array has the following properties:
+postId: a unique identifier for the post<br />
+title: the title of the post<br />
+repost: a boolean indicating whether the post is a repost of another post<br />
+repostId: if repost is true, this is the postId of the original post<br />
+quote: a boolean indicating whether the post is a quote of another post<br />
+quoteId: if quote is true, this is the postId of the original post<br />
+body: the body text of the post<br />
+comments: an array of comment objects (see below)<br />
+likes: an array of user ids representing the users who have liked the post<br />
+shares: an array of user ids representing the users who have shared the post<br />
+quotes: an array of user ids representing the users who have quoted the post<br />
+author: the name of the user who created the post<br />
+authorId: the id of the user who created the post<br />
+date: the timestamp (in seconds since the Unix epoch) when the post was created<br />
+Each comment object in the comments array has the following properties:<br />
 
-author: the name of the user who created the comment
-authorId: the id of the user who created the comment
-content: the text of the comment
-date: the timestamp (in seconds since the Unix epoch) when the comment was created
-Users
-Each user object in the Users array has the following properties:
+author: the name of the user who created the comment<br />
+authorId: the id of the user who created the comment<br />
+content: the text of the comment<br />
+date: the timestamp (in seconds since the Unix epoch) when the comment was created<br />
+Users<br />
+Each user object in the Users array has the following properties:<br />
 
-id: a unique identifier for the user
-name: the user's name
-email: the user's email address
-password: the user's password (stored in plain text for simplicity)
-followers: an array of user ids representing the users who follow this user
-following: an array of user ids representing the users whom this user follows
-date: the timestamp (in seconds since the Unix epoch) when the user account was created
-Functions
-The app includes the following functions:
+id: a unique identifier for the user<br />
+name: the user's name<br />
+email: the user's email address<br />
+password: the user's password (stored in plain text for simplicity)<br />
+followers: an array of user ids representing the users who follow this user<br />
+following: an array of user ids representing the users whom this user follows<br />
+date: the timestamp (in seconds since the Unix epoch) when the user account was created<br />
+Functions<br />
+The app includes the following functions:<br />
 
-getPostById(id: number): Post
-Returns the post object with the specified postId, or undefined if no such post exists.
+`getPostById(id: number): Post`<br />
+Returns the post object with the specified postId, or undefined if no such post exists.<br />
 
-getUserById(id: number): User
-Returns the user object with the specified userId, or undefined if no such user exists.
+`getUserById(id: number): User`<br />
+Returns the user object with the specified userId, or undefined if no such user exists.<br />
 
-getPostsByAuthor(authorId: number): Post[]
+`getPostsByAuthor(authorId: number): Post[]`<br />
 Returns an array of post objects created by the user with the specified authorId, sorted by date in descending order.
 
-getPostsLikedByUser(userId: number): Post[]
+`getPostsLikedByUser(userId: number): Post[]`<br />
 Returns an array of post objects that have been liked by the user with the specified userId, sorted by date in descending order.
 
-getPostsByFollowedUsers(userId: number): Post[]
+`getPostsByFollowedUsers(userId: number): Post[]`<br />
 Returns an array of post objects created by users followed by the user with the specified userId, sorted by date in descending order.
 
-createPost(post: Post): void
+`createPost(post: Post): void`
 Adds the specified post object to the Posts array.
 
-createComment(comment: Comment, postId: number): void
+`createComment(comment: Comment, postId: number): void`
 Adds the specified comment object to the `
 
 # Main grig
 
-The component defines several states to manage the current state of the component:
+The component defines several states to manage the current state of the component:<br />
 
-posts: an array of objects with post data (IPosts interface)
-post: an object with the data of the current post being displayed (IPosts interface)
-users: an array of objects with user data
-user: a number representing the ID of the current user being displayed
-data: an object containing the data of the modal being displayed
-comment: an object containing the data of the comment being added to a post
-The component also uses some hooks:
+posts: an array of objects with post data (IPosts interface)<br />
+post: an object with the data of the current post being displayed (IPosts interface)<br />
+users: an array of objects with user data<br />
+user: a number representing the ID of the current user being displayed<br />
+data: an object containing the data of the modal being displayed<br />
+comment: an object containing the data of the comment being added to a post<br />
+The component also uses some hooks:<br />
 
-`useLocation` hook from react-router-dom library to access the current location
-`useParams` hook from react-router-dom library to access the parameters of the current URL
-`useContext` hook to access the context object of the parent component
-`useState` hook to manage the states
-The component also defines several functions:
+`useLocation` hook from react-router-dom library to access the current location<br />
+`useParams` hook from react-router-dom library to access the parameters of the current URL<br />
+`useContext` hook to access the context object of the parent component<br />
+`useState` hook to manage the states<br />
+The component also defines several functions:<br />
 
-`handleRepost`: a function that adds a new post with the same body as the current post being reposted
-`handleQuote`: a function that sets the input state to quote mode and sets the quoteId to the current post ID
-`handleLike`: a function that adds the current user ID to the likes array of the current post being liked
-`postFormat`: a function that formats the post according to its type (normal, quote or repost)
-`handleSubmit`: a function that adds the comment to the comments array of the current post
-The component also defines two useEffect hooks:
+`handleRepost`: a function that adds a new post with the same body as the current post being reposted<br />
+`handleQuote`: a function that sets the input state to quote mode and sets the quoteId to the current post ID<br />
+`handleLike`: a function that adds the current user ID to the likes array of the current post being liked<br />
+`postFormat`: a function that formats the post according to its type (normal, quote or repost)<br />
+`handleSubmit`: a function that adds the comment to the comments array of the current post<br />
+The component also defines two useEffect hooks:<br />
 
 The first useEffect hook sets the posts and users states to the data stored in the local storage
 The second useEffect hook sets the user state and the data state based on the ID parameter of the URL and the user data stored in the users state.
@@ -213,63 +213,64 @@ The second useEffect hook sets the user state and the data state based on the ID
 ### IPosts:
 This interface defines the shape of each post in the list. It has the following properties:
 
-`postId` (number): the unique identifier for the post.
-`title` (string): the title of the post.
-`body` (string): the content of the post.
-`quote` (boolean): whether the post is a quote of another post.
-`repost` (boolean): whether the post is a repost of another post.
-`quoteId` (number | null): the id of the post that was quoted, if applicable.
-`repostId` (number | null): the id of the post that was reposted, if applicable.
-`comments` (array of objects): an array of comments on the post. Each comment has an author (string) and content (string).
-`likes` (array of numbers): an array of user ids that have liked the post.
-`author` (string): the name of the post author.
-`quotes` (array): an array of quotes of the post.
-`shares` (array): an array of shares of the post.
-`authorId` (number): the id of the post author.
-`date` (number): the timestamp of when the post was created.
-`IModal`:
+`postId` (number): the unique identifier for the post.<br />
+`title` (string): the title of the post.<br />
+`body` (string): the content of the post.<br />
+`quote` (boolean): whether the post is a quote of another post.<br />
+`repost` (boolean): whether the post is a repost of another post.<br />
+`quoteId` (number | null): the id of the post that was quoted, if applicable.<br />
+`repostId` (number | null): the id of the post that was reposted, if applicable.<br />
+`comments` (array of objects): an array of comments on the post. Each comment has an author (string) and content (string).<br />
+`likes` (array of numbers): an array of user ids that have liked the post.<br />
+`author` (string): the name of the post author.<br />
+`quotes` (array): an array of quotes of the post.<br />
+`shares` (array): an array of shares of the post.<br />
+`authorId` (number): the id of the post author.<br />
+`date` (number): the timestamp of when the post was created.<br />
 
-This interface defines the shape of the modal component that can be used to create or edit a post. It has the following properties:
+### IModal<br />
 
-`info` (string | undefined): an optional message to display in the modal.
-`user` (number | undefined): the id of the current user.
-`id` (number | undefined): the id of the post being edited, if applicable.
-`body` (string | undefined): the content of the post being edited, if applicable.
-`email` (string | undefined): the email address of the user being edited, if applicable.
-`password` (string | undefined): the password of the user being edited, if applicable.
-`followers` (array of numbers | undefined): an array of follower user ids, if applicable.
-`following` (array of numbers | undefined): an array of following user ids, if applicable.
-`posts` (array of strings | undefined): an array of post ids, if applicable.
-`comments` (array of strings | undefined): an array of comment ids, if applicable.
-`date` (number | undefined): the timestamp of when the post was created, if applicable.
-name (string | undefined): the name of the user being edited, if applicable.
+This interface defines the shape of the modal component that can be used to create or edit a post. It has the following properties:<br />
+
+`info` (string | undefined): an optional message to display in the modal.<br />
+`user` (number | undefined): the id of the current user.v<br />
+`id` (number | undefined): the id of the post being edited, if applicable.<br />
+`body` (string | undefined): the content of the post being edited, if applicable.<br />
+`email` (string | undefined): the email address of the user being edited, if applicable.<br />
+`password` (string | undefined): the password of the user being edited, if applicable.<br />
+`followers` (array of numbers | undefined): an array of follower user ids, if applicable.<br />
+`following` (array of numbers | undefined): an array of following user ids, if applicable.<br />
+`posts` (array of strings | undefined): an array of post ids, if applicable.<br />
+`comments` (array of strings | undefined): an array of comment ids, if applicable.<br />
+`date` (number | undefined): the timestamp of when the post was created, if applicable.<br />
+name (string | undefined): the name of the user being edited, if applicable.<br />
 
 ### IUser:
 This interface defines the shape of a user object. It has the following properties:
 
-`id` (number): the unique identifier for the user.
-`name` (string): the name of the user.
-`email` (string): the email address of the user.
-`followers` (array of numbers): an array of user ids that are following the user.
-`following` (array of numbers): an array of user ids that the user is following.
-`date` (number): the timestamp of when the user was created.
+`id` (number): the unique identifier for the user.<br />
+`name` (string): the name of the user.<br />
+`email` (string): the email address of the user.<br />
+`followers` (array of numbers): an array of user ids that are following the user.<br />
+`following` (array of numbers): an array of user ids that the user is following.<br />
+`date` (number): the timestamp of when the user was created.<br />
 
 ### IComments
 The IComments interface is used to define the shape of comment objects. It contains the following properties:
 
-`author`: a string representing the author of the comment.
-`authorId`: a number representing the unique identifier of the author.
-`content`: a string representing the content of the comment.
-`date`: a number representing the timestamp of when the comment was created.
-This interface is used to ensure consistency in the shape of comment objects throughout the application.
+`author`: a string representing the author of the comment.<br />
+`authorId`: a number representing the unique identifier of the author.<br />
+`content`: a string representing the content of the comment.<br />
+`date`: a number representing the timestamp of when the comment was created.<br />
+This interface is used to ensure consistency in the shape of comment objects throughout the application.<br />
 
 ### IPostInput
 The IPostInput interface is used to define the shape of objects used as inputs for creating new posts. It contains the following optional properties:
 
-`repost`: a boolean indicating whether the post is a repost.
-`quote`: a boolean indicating whether the post is a quote.
-`quoteId`: a number representing the unique identifier of the post being quoted, if applicable.
-`repostId`: a number representing the unique identifier of the post being reposted, if applicable.
-This interface is used to ensure consistency in the shape of post input objects throughout the application.
+`repost`: a boolean indicating whether the post is a repost.<br />
+`quote`: a boolean indicating whether the post is a quote.<br />
+`quoteId`: a number representing the unique identifier of the post being quoted, if applicable.<br />
+`repostId`: a number representing the unique identifier of the post being reposted, if applicable.<br />
+This interface is used to ensure consistency in the shape of post input objects throughout the application.<br />
 
 
